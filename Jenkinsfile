@@ -49,8 +49,8 @@ pipeline {
         }
         stage("Docker build") {
             steps {
-                sh "docker rmi givanandrian/laravel8cdpart2"
-                sh "docker build -t givanandrian/laravel8cdpart2 --no-cache ."
+                sh "docker rmi danielgara/laravel8cdpart2"
+                sh "docker build -t danielgara/laravel8cdpart2 --no-cache ."
             }
         }
         stage("Docker push") {
@@ -60,7 +60,7 @@ pipeline {
             }
             steps {
                 sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
-                sh "docker push givanandrian/laravel8cdpart2"
+                sh "docker push danielgara/laravel8cdpart2"
             }
         }
         stage("Deploy to staging") {
