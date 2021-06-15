@@ -47,7 +47,12 @@ pipeline {
                 sh "vendor/bin/phpcs"
             }
         }
-       
+        stage("Docker build") {
+            steps {
+                sh "docker rmi danielgara/laravel8cdpart2"
+                sh "docker build -t danielgara/laravel8cdpart2 --no-cache ."
+            }
+        }
         stage("Docker push") {
             environment {
                 DOCKER_USERNAME = credentials("docker-user")
