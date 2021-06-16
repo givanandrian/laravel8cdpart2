@@ -49,7 +49,7 @@ pipeline {
         }
         stage("Docker build") {
             steps {
-                
+                sh "docker rmi givanandrian/laravel8cdpart2"
                 sh "docker build -t givanandrian/laravel8cdpart2 --no-cache ."
             }
         }
