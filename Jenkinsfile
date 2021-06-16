@@ -68,7 +68,7 @@ pipeline {
                 sh "export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
                 sh "export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
                 sh "export AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}"
-                sh "ssh-agent sh -c 'ssh-add /etc/ansible/pem/key.pem && ansible-playbook /etc/ansible/playbook/playbook-staging-run.yml'"
+                sh "ssh-agent sh -c 'ssh-add /etc/ansible/pem/key-automation.pem && ansible-playbook /etc/ansible/playbook/playbook-staging-run.yml'"
             }
         }
         stage("Acceptance test curl") {
@@ -82,14 +82,14 @@ pipeline {
                 sh "export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
                 sh "export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
                 sh "export AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}"
-                sh "ssh-agent sh -c 'ssh-add /etc/ansible/pem/key.pem && ansible-playbook /etc/ansible/playbook/playbook-staging-acceptance.yml'"
+                sh "ssh-agent sh -c 'ssh-add /etc/ansible/pem/key-automation.pem && ansible-playbook /etc/ansible/playbook/playbook-staging-acceptance.yml'"
             }
             post {
                 always {
                     sh "export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
                     sh "export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
                     sh "export AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}"
-                    sh "ssh-agent sh -c 'ssh-add /etc/ansible/pem/key.pem && ansible-playbook /etc/ansible/playbook/playbook-staging-stop.yml'"
+                    sh "ssh-agent sh -c 'ssh-add /etc/ansible/pem/key-automation.pem && ansible-playbook /etc/ansible/playbook/playbook-staging-stop.yml'"
                 }
             }
         }
@@ -98,7 +98,7 @@ pipeline {
                 sh "export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
                 sh "export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
                 sh "export AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}"
-                sh "ssh-agent sh -c 'ssh-add /etc/ansible/pem/key.pem && ansible-playbook /etc/ansible/playbook/playbook-production-run.yml'"
+                sh "ssh-agent sh -c 'ssh-add /etc/ansible/pem/key-automation.pem && ansible-playbook /etc/ansible/playbook/playbook-production-run.yml'"
             }
         }
         stage("Smoke test") {
@@ -107,7 +107,7 @@ pipeline {
                 sh "export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
                 sh "export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
                 sh "export AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}"
-                sh "ssh-agent sh -c 'ssh-add /etc/ansible/pem/key.pem && ansible-playbook /etc/ansible/playbook/playbook-production-acceptance.yml'"
+                sh "ssh-agent sh -c 'ssh-add /etc/ansible/pem/key-automation.pem && ansible-playbook /etc/ansible/playbook/playbook-production-acceptance.yml'"
             }
         }
     }
